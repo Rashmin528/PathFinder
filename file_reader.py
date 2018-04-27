@@ -20,7 +20,9 @@ def read_file(file_name='citygps.csv'):
 if __name__ == "__main__":
         input_data = read_file()
         input_city = 'Abbott'
-        print(input_data[input_city].city, input_data[input_city].state, input_data[input_city].latitude, input_data[input_city].longitude)
-
+        print(input_data[input_city].city)
+        print(input_data[input_city].state)
+        print(input_data[input_city].latitude)
+        print(input_data[input_city].longitude)
 
 
