@@ -1,5 +1,5 @@
-import csv
 
+import csv
 
 class Node(object):
     def __init__(self, city, state, latitude=0, longitude=0):
@@ -8,23 +8,19 @@ class Node(object):
         self.latitude = latitude
         self.longitude = longitude
 
-
 def read_file(file_name='citygps.csv'):
-	result = {}
-	with open(file_name, 'r') as file:
-		reader = csv.reader(file)
-		for city, details in reader:
-			state, latitude, longitude = details.split(' ')
-			result[city] = Node(city, state, latitude, longitude)
-	return result
-
+        result = {}
+        with open(file_name, 'r') as file:
+                reader = csv.reader(file)
+                for city, details in reader:
+                        state, latitude, longitude = details.split(' ')
+                        result[city] = Node(city, state, latitude, longitude)
+        return result
 
 if __name__ == "__main__":
-	# Reads as City = Node(city, state, latitude, longitude)
-	input_data = read_file()
-	input_city = 'Seattle'
-	print "This Prints City : Node"
-	print input_data[input_city]
-	print input_data[input_city].state
-	print input_data[input_city].latitude
-	print input_data[input_city].longitude
+        input_data = read_file()
+        input_city = 'Abbott'
+        print(input_data[input_city].city, input_data[input_city].state, input_data[input_city].latitude, input_data[input_city].longitude)
+
+
+
