@@ -29,10 +29,10 @@ def read_file():
 if __name__ == "__main__":
 	result = read_file()
 	input_city = 'Okolona'
-	for new in result[input_city]:
-		print(new.start_city)
-		print(new.end_city)
-		print(new.state)
-		print(new.distance)
-		print(new.maxspeed)
-		print(new.highway)
+	for value in result[input_city]:
+		print(value.start_city)
+		print(value.end_city)
+		print(value.state)
+		print(value.distance)
+		print(value.maxspeed)
+		print(value.highway)
