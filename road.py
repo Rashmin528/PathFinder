@@ -1,29 +1,38 @@
 import csv
 
-class Node(object):
-    def __init__(self, start_city,end_city,state,distance,maxspeed,highway):
-        self.start_city = start_city
-        self.end_city = end_city
-        self.state = state
-        self.distance = distance
-        self.maxspeed = maxspeed
-        self.highway = highway
+class Segment(object):
+	def __init__(self, start_city, end_city, state, distance, maxspeed, highway):
+		self.start_city = start_city
+		self.end_city = end_city
+		self.state = state
+		self.distance = distance
+		self.maxspeed = maxspeed
+		self.highway = highway
 
-def read_file(file_name='roadsegment.csv'):
-        result = {}
-        with open(file_name, 'r') as file:
-                reader = csv.reader(file)
-                for start_city, end_city, details in reader:
-                        state, distance, maxspeed, highway = details.split(' ')
-                        result[start_city] = Node(start_city,end_city, state, distance,maxspeed,highway)
-        return result
+def read_file():
+	result = {}
+	with open('roadsegment.csv', 'r') as file:
+		reader = csv.reader(file)
+		for start_city, end_city, details in reader:
+			state, distance, maxspeed, highway = details.split(' ')
+			if start_city not in result:
+				result[start_city] = [Segment(start_city, end_city, state, distance, maxspeed, highway)]
+			else:
+				result[start_city].append(Segment(start_city, end_city, state, distance, maxspeed, highway))
+			if end_city not in result:
+				result[end_city] = [Segment(start_city, end_city, state, distance, maxspeed, highway)]
+			else:
+				result[end_city].append(Segment(start_city, end_city, state, distance, maxspeed, highway))
+
+	return result
 
 if __name__ == "__main__":
-        input_data = read_file()
-        input_city = 'Bayfield'
-        print(input_data[input_city].start_city)
-        print(input_data[input_city].end_city)
-        print(input_data[input_city].state)
-        print(input_data[input_city].distance)
-        print(input_data[input_city].maxspeed)
-        print(input_data[input_city].highway)
+	result = read_file()
+	input_city = 'Okolona'
+	for new in result[input_city]:
+		print(new.start_city)
+		print(new.end_city)
+		print(new.state)
+		print(new.distance)
+		print(new.maxspeed)
+		print(new.highway)
