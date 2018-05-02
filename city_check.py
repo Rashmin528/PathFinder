@@ -9,9 +9,9 @@ class Segment(object):
 		self.maxspeed = maxspeed
 		self.highway = highway
 
-def read_file(file_name='roadsegment.csv'):
+def read_file():
 	result = {}
-	with open(file_name, 'r') as file:
+	with open('roadsegment.csv', 'r') as file:
 		reader = csv.reader(file)
 		for start_city, end_city, details in reader:
 			state, distance, maxspeed, highway = details.split(' ')
@@ -27,8 +27,8 @@ def read_file(file_name='roadsegment.csv'):
 	return result
 
 def city_connection(start_city,end_city,result):
-	for item in result[start_city]:
-		if start_city == item.start_city:
+	if start_city not in result[start_city]:
+		for item in result[start_city]:
 			if end_city == item.end_city:
 				print(item.start_city, item.end_city, item.state, item.distance, item.maxspeed, item.highway)
 				return True
